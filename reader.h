@@ -1,0 +1,15 @@
+#ifndef READER_H
+#define READER_H
+
+#include <QStringList>
+#include <memory>
+
+class Reader
+{
+public:
+    Reader();
+    //virtual QStringList readData();    //virtual std::unique_ptr<Reader> createReader() = 0;
+    virtual QStringList read() = 0;
+};
+
+#endif // READER_H

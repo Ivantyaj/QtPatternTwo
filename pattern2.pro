@@ -26,10 +26,22 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    reader.cpp \
+    fileworker.cpp \
+    xmlworker.cpp \
+    xmlreader.cpp \
+    csvreader.cpp \
+    csvworker.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    reader.h \
+    fileworker.h \
+    xmlworker.h \
+    xmlreader.h \
+    csvreader.h \
+    csvworker.h
 
 FORMS += \
         mainwindow.ui
