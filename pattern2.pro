@@ -32,7 +32,8 @@ SOURCES += \
     xmlworker.cpp \
     xmlreader.cpp \
     csvreader.cpp \
-    csvworker.cpp
+    csvworker.cpp \
+    task.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -41,7 +42,8 @@ HEADERS += \
     xmlworker.h \
     xmlreader.h \
     csvreader.h \
-    csvworker.h
+    csvworker.h \
+    task.h
 
 FORMS += \
         mainwindow.ui
