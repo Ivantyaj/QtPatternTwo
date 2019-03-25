@@ -5,7 +5,9 @@ FileWorker::FileWorker()
 
 }
 
-QStringList FileWorker::getData()
+QStandardItemModel * FileWorker::getData()
 {
-    return createReader()->read();
+    QStandardItemModel * model = createReader()->read();
+    emit signalReadData(model);
+    return model;
 }

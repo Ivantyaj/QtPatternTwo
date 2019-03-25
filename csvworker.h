@@ -3,8 +3,9 @@
 
 #include "fileworker.h"
 #include "csvreader.h"
+#include <QObject>
 
-class CSVWorker : public FileWorker
+class CSVWorker :public FileWorker
 {
 public:
     CSVWorker();

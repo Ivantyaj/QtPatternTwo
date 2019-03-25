@@ -3,13 +3,17 @@
 
 #include "reader.h"
 #include <QStringList>
+#include <QObject>
 
-class FileWorker
+class FileWorker : public QObject
 {
+    Q_OBJECT
 public:
     FileWorker();
     virtual Reader * createReader() = 0;
-    virtual QStringList getData() final;
+    virtual QStandardItemModel * getData() final;
+signals:
+    void signalReadData(QStandardItemModel *);
 };
 
 #endif // FILEWORKER_H

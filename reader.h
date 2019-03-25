@@ -1,7 +1,7 @@
 #ifndef READER_H
 #define READER_H
 
-#include <QStringList>
+#include <QStandardItemModel>
 #include <memory>
 
 class Reader
@@ -9,7 +9,7 @@ class Reader
 public:
     Reader();
     //virtual QStringList readData();    //virtual std::unique_ptr<Reader> createReader() = 0;
-    virtual QStringList read() = 0;
+    virtual QStandardItemModel * read() = 0;
 };
 
 #endif // READER_H
