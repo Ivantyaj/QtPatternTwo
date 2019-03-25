@@ -24,7 +24,7 @@ signals:
     void btnRead(FileWorker *);
 
 public slots:
-    void setReadData(QStandardItemModel *);
+    void setReadData(QList<QStringList>);
 
 private slots:
     void on_pushButton_clicked();

@@ -5,6 +5,7 @@
 #include <QStringList>
 #include <QTime>
 #include <QDate>
+#include <QStandardItem>
 
 class Task
 {
@@ -17,6 +18,7 @@ public:
 
     //TODO
     QStringList getStringList() {}
+    void setFromItem(QStandardItem * item);
 
 private:
     QString projectName;

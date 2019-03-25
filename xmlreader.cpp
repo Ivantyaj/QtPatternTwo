@@ -5,7 +5,7 @@ XMLReader::XMLReader()
 
 }
 
-QStandardItemModel * XMLReader::read()
+QList<QStringList> XMLReader::read()
 {
 
 }

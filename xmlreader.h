@@ -7,7 +7,7 @@ class XMLReader : public Reader
 {
 public:
     XMLReader();
-    QStandardItemModel* read();
+    QList<QStringList> read();
 };
 
 #endif // XMLREADER_H

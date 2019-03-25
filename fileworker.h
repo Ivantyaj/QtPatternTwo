@@ -11,9 +11,9 @@ class FileWorker : public QObject
 public:
     FileWorker();
     virtual Reader * createReader() = 0;
-    virtual QStandardItemModel * getData() final;
+    virtual QList<QStringList> getData() final;
 signals:
-    void signalReadData(QStandardItemModel *);
+    void signalReadData(QList<QStringList>);
 };
 
 #endif // FILEWORKER_H

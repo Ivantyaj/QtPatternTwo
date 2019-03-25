@@ -5,7 +5,7 @@ CSVReader::CSVReader()
 
 }
 
-QStandardItemModel * CSVReader::read()
+QList<QStringList> CSVReader::read()
 {
 //    busList.clear();
 //    busListFiltered.clear();
@@ -14,8 +14,8 @@ QStandardItemModel * CSVReader::read()
     file->setFileName("E:\\Projects\\Qt\\pattern2\\task.csv");
     file->open(QFile::ReadOnly | QFile::Text);
 
-    QStandardItemModel * model = new QStandardItemModel();
-    model->setColumnCount(10);
+    //QStandardItemModel * model = new QStandardItemModel();
+    //model->setColumnCount(10);
 
     QTextStream in(file);
 //    if(!in.atEnd()){
@@ -28,24 +28,25 @@ QStandardItemModel * CSVReader::read()
 //        headers = stringList;
 //        qDebug() << stringList;
 //    }
-
+QList<QStringList> stdItemList;
     while(!in.atEnd()){
         QString line = in.readLine();
-        QList<QStandardItem *> stdItemList;
+        //QList<QStandardItem *> stdItemList;
+
         QStringList stringListBus;
         for(QString item : line.split(";")){
             stringListBus << item;
-            stdItemList.append(new QStandardItem(item));
+            //stdItemList.append(new QStandardItem(item));
         }
         //addBus(stringListBus);
 
-
-        model->insertRow(model->rowCount(),stdItemList);
+        stdItemList.append(stringListBus);
+        //model->insertRow(model->rowCount(),stdItemList);
         qDebug() << stdItemList;
     }
     file->close();
 
     //busListFiltered = busList;
 
-    return model;
+    return stdItemList;
 }

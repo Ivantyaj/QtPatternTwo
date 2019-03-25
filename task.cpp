@@ -13,3 +13,8 @@ void Task::setFromList(const QStringList &list)
     plannedHour = list.at(3).toInt();
     wokerName = list.at(4);
 }
+
+void Task::setFromItem(QStandardItem *item)
+{
+    item->columnCount();
+}

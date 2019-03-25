@@ -9,7 +9,7 @@ class CSVReader : public Reader
 {
 public:
     CSVReader();
-    QStandardItemModel * read();
+    QList<QStringList> read();
 };
 
 #endif // CSVREADER_H
