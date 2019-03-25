@@ -68,7 +68,7 @@ void MainWindow::on_pushButtonFilter_clicked()
             }
         }
     } else {
-        taskFiltered = taskList;
+        taskListFilteredName = taskList;
     }
 
 
@@ -76,43 +76,44 @@ void MainWindow::on_pushButtonFilter_clicked()
 
     QString filterString = ui->lineEditFilter->text();
     if(!filterString.isEmpty()){
-    switch (ui->comboBoxFilter->currentIndex()) {
-    case 0:
+        switch (ui->comboBoxFilter->currentIndex()) {
+        case 0:
+            for(Task task: taskListFilteredName){
+                if(task.getProjectName() == filterString)
+                    taskFiltered.append(task);
+            }
+            break;
+        case 1:
+            for(Task task: taskListFilteredName){
+                if(task.getTaskName() == filterString)
+                    taskFiltered.append(task);
+            }
+            break;
+        case 2:
+            for(Task task: taskList){
+                if(task.getTaskId() == filterString)
+                    taskFiltered.append(task);
+            }
+            break;
+        case 3:
+            for(Task task: taskListFilteredName){
+                if(task.getPlannedHour() == filterString)
+                    taskFiltered.append(task);
+            }
+            break;
+            //    case 4:
+            //        for(Task task: taskList){
+            //            if(task.getWorkerName() == filterString)
+            //                taskFiltered.append(task);
+            //        }
+            //        break;
+        }
+    } else {
         for(Task task: taskListFilteredName){
-            if(task.getProjectName() == filterString)
-                taskFiltered.append(task);
+            taskFiltered.append(task);
         }
-        break;
-    case 1:
-        for(Task task: taskListFilteredName){
-            if(task.getTaskName() == filterString)
-                taskFiltered.append(task);
-        }
-        break;
-    case 2:
-        for(Task task: taskList){
-            if(task.getTaskId() == filterString)
-                taskFiltered.append(task);
-        }
-        break;
-    case 3:
-        for(Task task: taskListFilteredName){
-            if(task.getPlannedHour() == filterString)
-                taskFiltered.append(task);
-        }
-        break;
-        //    case 4:
-        //        for(Task task: taskList){
-        //            if(task.getWorkerName() == filterString)
-        //                taskFiltered.append(task);
-        //        }
-        //        break;
     }
-} else {
-        for(Task task: taskListFilteredName){
-                taskFiltered.append(task);
-        }
-}
+
     QStandardItemModel * model = new QStandardItemModel();
     model->setColumnCount(7);
     model->setHorizontalHeaderLabels(Task::getHeader());
