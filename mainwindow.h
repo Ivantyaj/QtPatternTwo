@@ -24,8 +24,10 @@ public:
 
 private:
     QList<Task> taskList;
+    QList<Task> taskFiltered;
     //QList<Task> taskFiltered;
 
+    void reloadTable(QList<Task>);
 signals:
     void btnRead(FileWorker *);
 
@@ -37,6 +39,8 @@ private slots:
     void on_pushButtonFilter_clicked();
 
     void on_tableView_clicked(const QModelIndex &index);
+
+    void on_pushButtonSaveTask_clicked();
 
 private:
     Ui::MainWindow *ui;

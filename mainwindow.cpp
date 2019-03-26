@@ -13,6 +13,27 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::reloadTable(QList<Task> tasks)
+{
+    QStandardItemModel * model = new QStandardItemModel();
+    model->setColumnCount(7);
+    model->setHorizontalHeaderLabels(Task::getHeader());
+
+    for(Task task: tasks){
+        QList<QStandardItem *> stdItemList;
+        stdItemList.append(new QStandardItem(task.getProjectName()));
+        stdItemList.append(new QStandardItem(task.getTaskName()));
+        stdItemList.append(new QStandardItem(task.getTaskId()));
+        stdItemList.append(new QStandardItem(task.getPlannedHour()));
+        stdItemList.append(new QStandardItem(task.getWorkerName()));
+        stdItemList.append(new QStandardItem(task.getTime()));
+        stdItemList.append(new QStandardItem(task.getDate()));
+        model->insertRow(model->rowCount(),stdItemList);
+    }
+
+    ui->tableView->setModel(model);
+}
+
 
 void MainWindow::on_pushButtonRead_clicked()
 {
@@ -40,14 +61,14 @@ void MainWindow::setReadData(QList<QStringList> readList)
     }
 
     ui->tableView->setModel(model);
-    //taskFiltered = taskList;
+    taskFiltered = taskList;
 }
 
 void MainWindow::on_pushButtonFilter_clicked()
 {
     //taskFiltered.clear();
     QList<Task> taskListFilteredName;
-    QList<Task> taskFiltered;
+    taskFiltered.clear();
 
 
 
@@ -101,12 +122,6 @@ void MainWindow::on_pushButtonFilter_clicked()
                     taskFiltered.append(task);
             }
             break;
-            //    case 4:
-            //        for(Task task: taskList){
-            //            if(task.getWorkerName() == filterString)
-            //                taskFiltered.append(task);
-            //        }
-            //        break;
         }
     } else {
         for(Task task: taskListFilteredName){
@@ -114,27 +129,23 @@ void MainWindow::on_pushButtonFilter_clicked()
         }
     }
 
-    QStandardItemModel * model = new QStandardItemModel();
-    model->setColumnCount(7);
-    model->setHorizontalHeaderLabels(Task::getHeader());
-
-    for(Task task: taskFiltered){
-        QList<QStandardItem *> stdItemList;
-        stdItemList.append(new QStandardItem(task.getProjectName()));
-        stdItemList.append(new QStandardItem(task.getTaskName()));
-        stdItemList.append(new QStandardItem(task.getTaskId()));
-        stdItemList.append(new QStandardItem(task.getPlannedHour()));
-        stdItemList.append(new QStandardItem(task.getWorkerName()));
-        model->insertRow(model->rowCount(),stdItemList);
-    }
-
-    ui->tableView->setModel(model);
+    reloadTable(taskFiltered);
 }
 
 
 void MainWindow::on_tableView_clicked(const QModelIndex &index)
 {
-    //qDebug() << index.row() << ui->tableView->model()->data(index.sibling(index.row(),4)).toString();
     QString taskId = ui->tableView->model()->data(index.sibling(index.row(),2)).toString();
     ui->lineEditTaskName->setText(taskId);
+}
+
+void MainWindow::on_pushButtonSaveTask_clicked()
+{
+    for(Task &task: taskFiltered){
+        if(ui->lineEditTaskName->text() == task.getTaskId()){
+            task.setDate(ui->dateEdit->date());
+            task.setTime(ui->timeEdit->time());
+        }
+    }
+    reloadTable(taskFiltered);
 }

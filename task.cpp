@@ -19,6 +19,16 @@ void Task::setFromList(const QStringList &list)
     workerName = list.at(4);
 }
 
+void Task::setTime(QTime time)
+{
+    this->time = time;
+}
+
+void Task::setDate(QDate date)
+{
+    this->date = date;
+}
+
 void Task::setFromItem(QStandardItem *item)
 {
     item->columnCount();
@@ -52,4 +62,14 @@ QString Task::getPlannedHour()
 QString Task::getWorkerName()
 {
     return workerName;
+}
+
+QString Task::getTime()
+{
+    return time.toString();
+}
+
+QString Task::getDate()
+{
+    return date.toString();
 }

@@ -28,6 +28,11 @@ public:
     QString getPlannedHour();
     QString getWorkerName();
 
+    QString getTime();
+    QString getDate();
+
+//    QString setTime(QTime);
+//    QString setDate(QDate);
 private:
     QString projectName;
     QString taskName;
