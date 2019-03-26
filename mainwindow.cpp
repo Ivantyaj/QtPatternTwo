@@ -34,14 +34,39 @@ void MainWindow::reloadTable(QList<Task> tasks)
     ui->tableView->setModel(model);
 }
 
+QList<QStringList> MainWindow::getTableData()
+{
+    int column = ui->tableView->model()->columnCount();
+    int row = ui->tableView->model()->rowCount();
+
+    QModelIndex index;
+
+    QList<QStringList> list;
+
+    for(int r = 0; r < row; r++){
+        QStringList stringList;
+        for(int c = 0; c < column; c++){
+            stringList.append(ui->tableView->model()->data(ui->tableView->model()->index(r,c)).toString());
+        }
+        qDebug() << stringList;
+        list.append(stringList);
+    }
+    return list;
+}
+
 
 void MainWindow::on_pushButtonRead_clicked()
 {
     if(ui->comboBoxFile->currentText() == "CSV"){
-        qDebug() << "read btn";
-        emit btnRead(new CSVWorker);
+        emit btnReadCSV();
     }
+}
 
+void MainWindow::on_pushButtonExport_clicked()
+{
+    if(ui->comboBoxFileExport->currentText() == "CSV"){
+        emit btnExportCSV(getTableData());
+    }
 }
 
 void MainWindow::setReadData(QList<QStringList> readList)
@@ -62,6 +87,11 @@ void MainWindow::setReadData(QList<QStringList> readList)
 
     ui->tableView->setModel(model);
     taskFiltered = taskList;
+}
+
+void MainWindow::confirmExport()
+{
+    QMessageBox::information(this, "Export", "Exported", QMessageBox::Ok);
 }
 
 void MainWindow::on_pushButtonFilter_clicked()
@@ -149,3 +179,5 @@ void MainWindow::on_pushButtonSaveTask_clicked()
     }
     reloadTable(taskFiltered);
 }
+
+

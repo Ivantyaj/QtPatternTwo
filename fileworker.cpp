@@ -11,3 +11,9 @@ QList<QStringList> FileWorker::getData()
     emit signalReadData(model);
     return model;
 }
+
+void FileWorker::setData(QList<QStringList> stringList)
+{
+    createReader()->write(stringList);
+    emit signalExportData();
+}

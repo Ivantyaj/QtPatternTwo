@@ -8,6 +8,7 @@
 #include <QStringList>
 #include <QDebug>
 #include "task.h"
+#include <QMessageBox>
 
 
 namespace Ui {
@@ -28,11 +29,14 @@ private:
     //QList<Task> taskFiltered;
 
     void reloadTable(QList<Task>);
+    QList<QStringList> getTableData();
 signals:
-    void btnRead(FileWorker *);
+    void btnReadCSV();
+    void btnExportCSV(QList<QStringList>);
 
 public slots:
     void setReadData(QList<QStringList>);
+    void confirmExport();
 
 private slots:
     void on_pushButtonRead_clicked();
@@ -41,6 +45,8 @@ private slots:
     void on_tableView_clicked(const QModelIndex &index);
 
     void on_pushButtonSaveTask_clicked();
+
+    void on_pushButtonExport_clicked();
 
 private:
     Ui::MainWindow *ui;

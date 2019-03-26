@@ -7,8 +7,8 @@ CSVReader::CSVReader()
 
 QList<QStringList> CSVReader::read()
 {
-//    busList.clear();
-//    busListFiltered.clear();
+    //    busList.clear();
+    //    busListFiltered.clear();
     //TODO
     QFile * file = new QFile();
     file->setFileName("E:\\Projects\\Qt\\pattern2\\task.csv");
@@ -18,17 +18,17 @@ QList<QStringList> CSVReader::read()
     //model->setColumnCount(10);
 
     QTextStream in(file);
-//    if(!in.atEnd()){
-//        QString line = in.readLine();
-//        QStringList stringList;
-//        for(QString item : line.split(";")){
-//            stringList << item;
-//        }
-//        model->setHorizontalHeaderLabels(stringList);
-//        headers = stringList;
-//        qDebug() << stringList;
-//    }
-QList<QStringList> stdItemList;
+    //    if(!in.atEnd()){
+    //        QString line = in.readLine();
+    //        QStringList stringList;
+    //        for(QString item : line.split(";")){
+    //            stringList << item;
+    //        }
+    //        model->setHorizontalHeaderLabels(stringList);
+    //        headers = stringList;
+    //        qDebug() << stringList;
+    //    }
+    QList<QStringList> stdItemList;
     while(!in.atEnd()){
         QString line = in.readLine();
         //QList<QStandardItem *> stdItemList;
@@ -49,4 +49,23 @@ QList<QStringList> stdItemList;
     //busListFiltered = busList;
 
     return stdItemList;
+}
+
+void CSVReader::write(QList<QStringList> list)
+{
+    qDebug() << "write " << list;
+    QFile file("E:\\file.csv");
+    if (file.open(QFile::WriteOnly|QFile::Truncate))
+    {
+        QTextStream stream(&file);
+
+        for(QStringList strList : list){
+            for(QString str : strList){
+                stream << str << ";";
+            }
+            stream << "\n";
+        }
+
+        file.close();
+    }
 }

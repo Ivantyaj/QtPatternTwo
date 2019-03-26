@@ -12,8 +12,10 @@ public:
     FileWorker();
     virtual Reader * createReader() = 0;
     virtual QList<QStringList> getData() final;
+    virtual void setData(QList<QStringList>) final;
 signals:
     void signalReadData(QList<QStringList>);
+    void signalExportData();
 };
 
 #endif // FILEWORKER_H

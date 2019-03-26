@@ -6,6 +6,7 @@
 //#include "QMainWindow"
 #include "fileworker.h"
 #include "csvworker.h"
+#include "xmlworker.h"
 
 class Mediator : QObject
 {
@@ -19,6 +20,7 @@ public slots:
 
 private:
     CSVWorker csvWorker;
+    XMLWorker xmlWorker;
 };
 
 #endif // MEDIATOR_H

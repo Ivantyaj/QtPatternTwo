@@ -10,6 +10,7 @@ class CSVReader : public Reader
 public:
     CSVReader();
     QList<QStringList> read();
+    void write(QList<QStringList>);
 };
 
 #endif // CSVREADER_H
