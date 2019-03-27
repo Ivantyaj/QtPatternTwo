@@ -39,7 +39,7 @@ QList<QStringList> MainWindow::getTableData()
     int column = ui->tableView->model()->columnCount();
     int row = ui->tableView->model()->rowCount();
 
-    QModelIndex index;
+    //QModelIndex index;
 
     QList<QStringList> list;
 
@@ -60,12 +60,18 @@ void MainWindow::on_pushButtonRead_clicked()
     if(ui->comboBoxFile->currentText() == "CSV"){
         emit btnReadCSV();
     }
+    if(ui->comboBoxFile->currentText() == "XML"){
+        emit btnReadXML();
+    }
 }
 
 void MainWindow::on_pushButtonExport_clicked()
 {
     if(ui->comboBoxFileExport->currentText() == "CSV"){
         emit btnExportCSV(getTableData());
+    }
+    if(ui->comboBoxFileExport->currentText() == "XML"){
+        emit btnExportXML(getTableData());
     }
 }
 

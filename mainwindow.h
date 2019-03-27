@@ -34,6 +34,9 @@ signals:
     void btnReadCSV();
     void btnExportCSV(QList<QStringList>);
 
+    void btnReadXML();
+    void btnExportXML(QList<QStringList>);
+
 public slots:
     void setReadData(QList<QStringList>);
     void confirmExport();
